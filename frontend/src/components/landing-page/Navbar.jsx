@@ -1,11 +1,13 @@
 import React from 'react';
 import { Box, Heading, Text, VStack, HStack, Divider,Image } from '@chakra-ui/react';
-import { MdHome, MdForum, MdDescription, MdStar, MdFeedback, MdInfo } from 'react-icons/md';
+import { MdHome, MdForum, MdDescription, MdStar, MdFeedback, MdInfo, MdUpgrade, MdWork, } from 'react-icons/md';
 import { AiOutlineBulb } from 'react-icons/ai';
+import { IconButton } from '@chakra-ui/react'
 import Logo from '../../assets/logo.png';
+import { FaLightbulb } from 'react-icons/fa';
 const Sidebar = () => {
   return (
-    <Box pos={'absolute'} top="0" bg="rgba(13, 13, 13, 0.2)" boxShadow="inset 0px 4px 4px rgba(0, 0, 0, 0.25)" width="260px" height="120vh" zIndex={330} >
+    <Box pos={'fixed'} top="0" bg="rgba(13, 13, 13, 1)" boxShadow="inset 0px 4px 4px rgba(0, 0, 0, 0.25)" width="260px" height="120vh" zIndex={100000} >
       <HStack alignItems="center" justify="center" width="300px" height="100px">
       <Image src={Logo} alt="hg" mr="-7px" mt="px" width="60px"  height="60px" />
       <Heading font-weight="bold" color="txtw" fontSize="3xl" p="40px 65px 35px 0px">
@@ -22,37 +24,38 @@ const Sidebar = () => {
           </Text>
         </HStack>
         <HStack spacing="20px" p="">
-          <Box width="43px" height="38px" borderRadius="12px" bg="btngrey" display="flex" justifyContent="center" alignItems="center">
-            <AiOutlineBulb color="txtdg" size="30px" />
+          <Box width="43px" height="38px" borderRadius="12px" bg="#32313B" display="flex" justifyContent="center" alignItems="center">
+            <FaLightbulb  size="25px" color="#A0AEC0"/>
           </Box>
-          <Text color="txtdg" fontSize="xl">
+
+          <Text color="grey1" fontSize="xl">
             Practice
           </Text>
         </HStack>
         
         <HStack spacing="20px" p="">
-          <Box width="43px" height="38px" borderRadius="12px" bg="btngrey" display="flex" justifyContent="center" alignItems="center">
-            <MdForum color="txtdg" size="30px" />
+          <Box width="43px" height="38px" borderRadius="12px" bg="#32313B" display="flex" justifyContent="center" alignItems="center" >
+            <MdForum  color="#A0AEC0" size="25px"  />
           </Box>
-          <Text color="txtdg" fontSize="xl">
+          <Text color="grey1" fontSize="xl">
           Forum
           </Text>
         </HStack>
         
         <HStack spacing="20px" p="">
-          <Box width="43px" height="38px" borderRadius="12px" bg="btngrey" display="flex" justifyContent="center" alignItems="center">
-            <MdStar color="txtdg" size="30px" />
+          <Box width="43px" height="38px" borderRadius="12px" bg="#32313B" display="flex" justifyContent="center" alignItems="center">
+            <MdStar color="#A0AEC0" size="30px" />
           </Box>
-          <Text color="txtdg" fontSize="xl">
+          <Text color="grey1" fontSize="xl">
             Contest
           </Text>
         </HStack>
        
         <HStack spacing="20px" p="">
-          <Box width="43px" height="38px" borderRadius="12px" bg="btngrey" display="flex" justifyContent="center" alignItems="center">
-            <MdDescription color="txtdg" size="30px" />
+          <Box width="43px" height="38px" borderRadius="12px" bg="#32313B"  display="flex" justifyContent="center" alignItems="center">
+            <MdDescription color="#A0AEC0" size="30px" />
           </Box>
-          <Text color="txtdg" fontSize="xl">
+          <Text color="grey1" fontSize="xl">
             Resources
           </Text>
         </HStack>
@@ -61,19 +64,19 @@ const Sidebar = () => {
       <Divider orientation='horizontal' width="200px"  borderWidth="px" borderColor="grey"  marginLeft="30px" />
       <VStack spacing="10" alignItems="left" p="45px">
       <HStack spacing="20px" p="">
-          <Box  width="43px" height="38px" borderRadius="12px" bg="btngrey" display="flex" justifyContent="center" alignItems="center">
-            <MdFeedback color="txtdg" size="30px" />
+          <Box  width="43px" height="38px" borderRadius="12px"  bg="#32313B" display="flex" justifyContent="center" alignItems="center">
+            <MdFeedback color="#A0AEC0" size="30px" />
           </Box>
-          <Text color="txtdg" fontSize="xl">
+          <Text color="grey1" fontSize="xl">
             Feedback
           </Text>
         </HStack>
 
         <HStack spacing="20px" p="">
-          <Box  width="43px" height="38px" borderRadius="12px" bg="btngrey" display="flex" justifyContent="center" alignItems="center">
-            <MdInfo color="txtdg" size="30px" />
+          <Box  width="43px" height="38px" borderRadius="12px"  bg="#32313B" display="flex" justifyContent="center" alignItems="center">
+            <MdInfo color="#A0AEC0" size="30px" />
           </Box>
-          <Text color="txtdg" fontSize="xl">
+          <Text color="grey1" fontSize="xl">
             About
           </Text>
         </HStack>

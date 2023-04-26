@@ -17,11 +17,11 @@ const theme = extendTheme({
 
       bg: '#1F1D2B',
       btng: '#2EC866',  /*used for buttons and to hightlight*/
-      btngrey: '#32313B',    /*used for non highlighted contents and boxes*/
+      grey2: '#718096',    /*used for non highlighted contents and boxes*/
       white: '#FFFFFF',
       txtw: '#FFFFFF',  /* text white*/
       txtg: '#C7C9D3',  /* text grey*/
-      txtdg: '#808191', /* text dark grey*/
+      grey1: '#A0AEC0', /* text dark grey*/
       txtb: '#000000',  /* text black*/
       
   },

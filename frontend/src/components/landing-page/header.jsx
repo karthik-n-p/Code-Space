@@ -1,45 +1,54 @@
 import React from 'react';
-import { Box, Flex, Spacer, IconButton, Input, InputGroup, InputRightElement, Circle, useColorMode, Avatar, Button, HStack } from '@chakra-ui/react';
+import { Box, Flex, Spacer, IconButton, Input, InputGroup, InputRightElement, Circle, useColorMode, Avatar, Button, HStack, Image,Heading } from '@chakra-ui/react';
 import { FaSearch, FaSun, FaUser } from 'react-icons/fa';
-
+import Logo from '../../assets/logo.png';
 const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode(); // Hook to get color mode (light or dark) and toggle function
   
   return (
-    <Box pos="absolute" top="0" width="100%" height="100px"  bg="gray.100" boxShadow="md" p={4} zIndex="0">
+    <Box pos="fixed" display="flex"   top="0" width="100%" zIndex={20}>
       <Flex align="center">
-        {/* Search bar */}
-        <Box>
+
+        {/* Logo */}
+       
+        <HStack alignItems="center" justify="center" width="300px" height="100px">
+      <Image src={Logo} alt="hg" mr="-7px" mt="px" width="60px"  height="60px" />
+      <Heading font-weight="bold" color="txtw" fontSize="3xl" p="40px 65px 35px 0px">
+        CodeSpace
+      </Heading>
+      </HStack>
+       
+        <Box ml="130px" >
           <InputGroup>
-            <Input placeholder="Search" />
-            <InputRightElement>
-              <IconButton icon={<FaSearch />} aria-label="Search" />
+            <Input  display="flex"  placeholder="Search" width={{base:"350px",md:"650px"}} ml="45px" h="50px"  bg="#494853" borderWidth="0px" />
+            <InputRightElement mt="5px" >
+               <FaSearch size="25px" color="grey2"/>
             </InputRightElement>
           </InputGroup>
         </Box>
         
         {/* Spacer */}
-        <Spacer />
+        <Spacer  />
         
         {/* Theme changer */}
         <Box>
-          <Circle size="40px" bg="yellow.300" mx={2} onClick={toggleColorMode} cursor="pointer">
-            <IconButton icon={<FaSun />} colorScheme="gray" size="md" aria-label="Toggle theme" />
+          <Circle bg="#32313B"  mx={5} onClick={toggleColorMode} cursor="pointer">
+            <IconButton icon={<FaSun size="25px" />}  w="45px" h="45px" borderRadius="100px" color="yellow" bg="#32313B" size="md" aria-label="Toggle theme" />
           </Circle>
         </Box>
         
         {/* Profile icon */}
         <Box>
-          <Circle size="40px" bg="gray.300" mx={2}>
-            <Avatar icon={<FaUser />} bg="transparent" />
+          <Circle  mx={-2} mr="10px" onClick={toggleColorMode} cursor="pointer">
+            <IconButton icon={<FaUser size="25px"  />}  w="45px" h="45px" borderRadius="100px" color="btng" bg="#32313B" size="md" aria-label="Toggle theme" />
           </Circle>
         </Box>
         
         {/* Signup/Login buttons */}
         <Box>
-          <HStack spacing={4}>
-            <Button colorScheme="teal" variant="outline">Sign up</Button>
-            <Button colorScheme="teal">Login</Button>
+          <HStack spacing={2}>
+            <Button color="black" bg="white" mx="5" >Signup</Button>
+            <Button bg="btng" color="black">Login</Button>
           </HStack>
         </Box>
       </Flex>
