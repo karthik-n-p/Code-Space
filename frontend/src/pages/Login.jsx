@@ -13,8 +13,7 @@ import {
   HStack
 } from "@chakra-ui/react";
 import Astronuat from '../assets/astronuat.png';
-import Big from '../assets/big_star.png';
-import Small from '../assets/small_star.png';
+import Star from '../assets/star.png';
 import { FaArrowRight } from "react-icons/fa";
 // import { FaCamera, FaCircle } from "react-icons/fa";
 
@@ -76,8 +75,8 @@ const LoginPage = () => {
       </Box>
       {/* Right side of the page */}
       <Box>
-        <Image src={Big} pos={"absolute"} width="137px" height="156px" left="699.63px" top="84.5px" />
-        <Image src={Small} pos={"absolute"} width="104.55px" height="115.56px" left="1137px" top="102.99px"/>
+        <Image src={Star} pos={"absolute"} width="137px" height="156px" left="699.63px" top="84.5px" />
+        <Image src={Star} pos={"absolute"} width="104.55px" height="115.56px" left="1137px" top="102.99px"/>
       </Box> 
       
       <Box>

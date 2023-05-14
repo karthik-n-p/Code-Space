@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Flex, Spacer, IconButton, Input, InputGroup, InputRightElement, Circle, useColorMode, Avatar, Button, HStack, Image,Heading } from '@chakra-ui/react';
 import { FaSearch, FaSun, FaUser } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import Logo from '../../assets/logo.png';
 const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode(); // Hook to get color mode (light or dark) and toggle function
@@ -47,7 +48,9 @@ const Header = () => {
         {/* Signup/Login buttons */}
         <Box>
           <HStack spacing={2}>
+            <Link to="/login">
             <Button color="black" bg="white" mx="5" >Signup</Button>
+            </Link>
             <Button bg="btng" color="black">Login</Button>
           </HStack>
         </Box>

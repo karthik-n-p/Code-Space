@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/Login';
 
 
@@ -40,8 +40,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
   <BrowserRouter>
   <ChakraProvider theme={theme}>
-    <Landing />
-    <LoginPage/>
+  <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<LoginPage />} />
+          {/* Add more routes as needed */}
+        </Routes>
   </ChakraProvider>
   </BrowserRouter>
   </React.StrictMode>,
