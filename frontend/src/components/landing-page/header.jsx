@@ -14,7 +14,7 @@ const Header = () => {
        
         <HStack alignItems="center" justify="center" width="300px" height="100px">
       <Image src={Logo} alt="hg" mr="-7px" mt="px" width="60px"  height="60px" />
-      <Heading font-weight="bold" color="txtw" fontSize="3xl" p="40px 65px 35px 0px">
+      <Heading fontWeight="bold" color="txtw" fontSize="3xl" p="40px 65px 35px 0px">
         CodeSpace
       </Heading>
       </HStack>
