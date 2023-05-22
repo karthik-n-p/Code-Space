@@ -10,15 +10,15 @@ function Landingcards() {
   return (
     <div>
       <Box display="flex" flexDirection={'row'} width="100%">
-    <Box pos="relative" h="320px" w="500px"  mt="140px" ml="300px" textAlign={'left'} color="white">
+    <Box pos="relative" h="350px" w="500px"  mt="40px" left="120px" textAlign={'left'} color="white">
       <Text fontWeight="semibold" fontSize={38}>The best place to build,<br /> upskill, and showcase <br/>your talent. </Text>
-      <Text fontSize={18} mt="20px">Elevate your coding skills, showcase your work,<br/> and engage in friendly competitions in a vibrant community. Join us to unlock your full coding potential!</Text>
+      <Text fontSize={18} mt="20px">Elevate your coding skills, showcase your work,and engage in friendly competitions in a vibrant community. Join us to unlock your full coding potential!</Text>
       <Button fontWeight={'normal'} mt="20px" bg="btng" color="black">SignUp</Button>
     </Box>
 
-    <Box pos="relative" h="420px" w="510px" bg="linear-gradient(109.61deg, #4C4F5A 4.26%, #202125 84.84%)" borderRadius="10px" mt="140px" ml="120px" textAlign={'left'} color="white">
+    <Box pos="relative" h="420px" w="600px" bg="linear-gradient(109.61deg, #4C4F5A 4.26%, #202125 84.84%)" borderRadius="10px" left="280px" mt="50px"  textAlign={'left'} color="white">
       
-    <Box pos="absolute"   p="5px" right="20px" h="150px" w="350px" bg="#1D1E22" boxShadow={'0px 4px 30px rgba(0, 0, 0, 0.5)'} borderRadius={6} mt="-30px">
+    <Box pos="absolute"   p="5px" right="20px" h="150px" w="400px" bg="#1D1E22" boxShadow={'0px 4px 30px rgba(0, 0, 0, 0.5)'} borderRadius={6} mt="-30px">
        <Flex  mt="10px" ml="10px" justify="space-between">
           <Flex gap="3px">
                 <MdSettings color="#4C4F5A" />
@@ -43,7 +43,7 @@ function Landingcards() {
 
 
 
-    <Box pos="absolute"  p="5px" top="160px" right="-20px" h="150px" w="350px" bg="#1D1E22" boxShadow={'0px 4px 30px rgba(0, 0, 0, 0.5)'} borderRadius={6} mt="-30px">
+    <Box pos="absolute"  p="5px" top="160px" right="-20px" h="150px" w="400px" bg="#1D1E22" boxShadow={'0px 4px 30px rgba(0, 0, 0, 0.5)'} borderRadius={6} mt="-30px">
        <Flex  mt="10px" ml="10px" justify="space-between">
           <Flex gap="3px">
                 <MdSettings color="#4C4F5A" />
@@ -61,7 +61,7 @@ function Landingcards() {
     </Box>
 
 
-    <Box pos="absolute" p="5px" top="320px" right="20px" h="150px" w="350px" bg="#1D1E22" boxShadow={'0px 4px 30px rgba(0, 0, 0, 0.5)'} borderRadius={6} mt="-30px">
+    <Box pos="absolute" p="5px" top="320px" right="20px" h="150px" w="400px" bg="#1D1E22" boxShadow={'0px 4px 30px rgba(0, 0, 0, 0.5)'} borderRadius={6} mt="-30px">
        <Flex  mt="10px" ml="10px" justify="space-between">
           <Flex gap="3px">
                 <MdSettings color="#4C4F5A" />
