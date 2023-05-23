@@ -10,7 +10,7 @@ import { auth, firestore } from "./pages/UserPages/firebase-auth";
 import PracQuest from './pages/UserPages/Practice';
 import QuestionPage from './pages/UserPages/Question';
 import { ChakraProvider,extendTheme } from '@chakra-ui/react'
-import './index.css'
+
 import Landing from './pages/UserPages/Landing'
 import Sidebar from './components/landing-page/Navbar';
 import Header from './components/landing-page/header';
