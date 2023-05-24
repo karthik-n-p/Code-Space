@@ -1,5 +1,6 @@
 import { Box, HStack, Image, Stack, Text, VStack } from "@chakra-ui/react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 function CompDesc1(){
     console.log("Inside CompDesc1.jsx") 
@@ -53,9 +54,9 @@ function CompDesc1(){
                     <Text fontSize={11}  ml="30px"><b>Second Prize:</b> Apple Airpods Max</Text>
                     <Text fontSize={11} mt="5px" ml="30px"><i>The top 20 competitors will also receive Coding Club swag.</i></Text>
                     <HStack ml="30px" mt="30px" spacing={10}>
-                    <Box bg="#2EC866" w="120px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
+                    <Link to="/compques"><Box bg="#2EC866" w="120px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
                             <Text color="white" fontWeight={"bold"} paddingTop={1}>Start</Text>
-                    </Box>
+                    </Box></Link>
                     <Box bg="white" w="120px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
                         <Text color="#808191" fontWeight={"bold"} paddingTop={1}>Leaderboard</Text>
                     </Box>

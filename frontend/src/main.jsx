@@ -23,6 +23,8 @@ import Forum from './pages/UserPages/Forum';
 import CompDesc1 from './pages/UserPages/CompetitionDesc';
 import CompQuesPage from './pages/UserPages/CompQues';
 import Admincomp from './pages/AdminPages/AdminCompetition';
+import CreateCompetitionForm from './pages/AdminPages/AdminCreateComp';
+import CreateQuestionForm from './pages/AdminPages/QuestionCreation';
 
 const theme = extendTheme({
   fonts: {
@@ -112,7 +114,8 @@ const App = () => {
             <Route path="/compdesc1" element={<CompDesc1/>} />
             <Route path="/compques" element={<CompQuesPage/>}/>
             <Route path="/admincomp" element={<Admincomp/>}/>
-            
+            <Route path="/createcomp" element={<CreateCompetitionForm/>}/>
+            <Route path="/createques" element={<CreateQuestionForm/>}/>
             
           </Routes>
 

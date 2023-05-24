@@ -4,6 +4,7 @@ import { FaBars, FaIcons, FaSearch } from "react-icons/fa";
 
 import { useState } from "react";
 import { Icon, Flex, Collapse, useOutsideClick } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 
 const MenuBar = () => {
@@ -221,9 +222,10 @@ function Admincomp(){
 
             <HStack w="1200px" spacing="570px" mt="20px">
             <Text fontWeight={"semibold"} fontSize={22} mt="10px" w="380px" >Upcomming Competitions</Text>
+            <Link to="/createcomp">
             <Box bg="#2EC866" w="220px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
                             <Text color="white" fontWeight={"bold"} paddingTop={1}>Create Competiiton</Text>
-                        </Box>
+                        </Box></Link>
             </HStack>
 
             <Box w="1200" h="50px" mt="10px">
