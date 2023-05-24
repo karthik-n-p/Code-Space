@@ -4,7 +4,7 @@ import React from "react";
 function CompFun() {
     return(
         <Box>
-           <Divider mt="100px" color="#808191" borderWidth={1.5}/>
+           <Divider mt="10px" color="#808191" borderWidth={1.5}/>
            <Text fontWeight={"bold"} fontSize={30} color={"white"} ml={280}>Competitions</Text>
            <Divider mt="13px" color="#808191" borderWidth={1.5}/>
            

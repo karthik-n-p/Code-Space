@@ -4,11 +4,11 @@ import React from "react";
 function CompFun() {
     return(
         <Box>
-           <Divider mt="100px" color="#808191" borderWidth={1.5}/>
+           <Divider mt="8px" color="#808191" borderWidth={1.5}/>
            <Text fontWeight={"bold"} fontSize={30} color={"white"} ml={280}>Competitions</Text>
            <Divider mt="13px" color="#808191" borderWidth={1.5}/>
            
-           <HStack alignItems="top" w="1060px"  height="700px" ml={280} mt="35px" spacing="180px">
+           <HStack alignItems="top" w="1060px"  height="700px" ml={285} mt="35px" spacing="180px">
             <div w="800px">
                 <Text fontWeight={"bold"} fontSize={20} color={"white"}  w="800px">Ongoing Competitions</Text>
                 <Box  h="60px" w="700px" mt="10px" borderRadius={10} borderWidth={2}>
@@ -62,7 +62,7 @@ function CompFun() {
                 <Box  h="60px" w="700px" mt="10px" borderRadius={10} borderWidth={2}>
                     <HStack w="695px" paddingTop="8px">
                         <Text color={"#808191"}  pl="15px" fontSize={22} w="300px">Blockify</Text>
-                        <Text color={"#808191"}  pl="15px" fontSize={14}  w="240px">31-Jan-2023 ,  09:30 IST  </Text>
+                        <Text color={"#808191"}  pl="15px" fontSize={14}  w="240px">31-Jan-2024 ,  09:30 IST  </Text>
                         <Box bg="#808191" w="120px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
                             <Text color="white" fontWeight={"bold"} paddingTop={1}>View</Text>
                         </Box>
@@ -73,7 +73,7 @@ function CompFun() {
                 <Box  h="60px" w="700px" mt="10px" borderRadius={10} borderWidth={2}>
                     <HStack w="695px" paddingTop="8px">
                         <Text color={"#808191"}  pl="15px" fontSize={22} w="300px">Saving Taxes</Text>
-                        <Text color={"#808191"}  pl="15px" fontSize={14}  w="240px">24-Feb-2023 ,  09:30 IST  </Text>
+                        <Text color={"#808191"}  pl="15px" fontSize={14}  w="240px">24-Feb-2024 ,  09:30 IST  </Text>
                         <Box bg="#808191" w="120px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
                             <Text color="white" fontWeight={"bold"} paddingTop={1}>View</Text>
                         </Box>
@@ -84,7 +84,7 @@ function CompFun() {
                 <Box  h="60px" w="700px" mt="10px" borderRadius={10} borderWidth={2}>
                     <HStack w="695px" paddingTop="8px">
                         <Text color={"#808191"}  pl="15px" fontSize={22} w="300px">Fitness</Text>
-                        <Text color={"#808191"}  pl="15px" fontSize={14}  w="240px">14-Mar-2023 ,  09:30 IST  </Text>
+                        <Text color={"#808191"}  pl="15px" fontSize={14}  w="240px">14-Mar-2024 ,  09:30 IST  </Text>
                         <Box bg="#808191" w="120px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
                             <Text color="white" fontWeight={"bold"} paddingTop={1}>View</Text>
                         </Box>
@@ -95,7 +95,7 @@ function CompFun() {
                 <Box  h="60px" w="700px" mt="10px" borderRadius={10} borderWidth={2}>
                     <HStack w="695px" paddingTop="8px">
                         <Text color={"#808191"}  pl="15px" fontSize={22} w="300px">Squats</Text>
-                        <Text color={"#808191"}  pl="15px" fontSize={14}  w="240px">30-Mar-2023 ,  09:30 IST  </Text>
+                        <Text color={"#808191"}  pl="15px" fontSize={14}  w="240px">30-Mar-2024 ,  09:30 IST  </Text>
                         <Box bg="#808191" w="120px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
                             <Text color="white" fontWeight={"bold"} paddingTop={1}>View</Text>
                         </Box>
@@ -106,7 +106,7 @@ function CompFun() {
                 <Box  h="60px" w="700px" mt="10px" borderRadius={10} borderWidth={2}>
                     <HStack w="695px" paddingTop="8px">
                         <Text color={"#808191"}  pl="15px" fontSize={22} w="300px">Boundary Marker</Text>
-                        <Text color={"#808191"}  pl="15px" fontSize={14}  w="240px">11-Apr-2023 ,  09:30 IST  </Text>
+                        <Text color={"#808191"}  pl="15px" fontSize={14}  w="240px">11-Apr-2024 ,  09:30 IST  </Text>
                         <Box bg="#808191" w="120px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
                             <Text color="white" fontWeight={"bold"} paddingTop={1}>View</Text>
                         </Box>

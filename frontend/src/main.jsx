@@ -21,6 +21,8 @@ import ResourcePage from './pages/UserPages/Resources';
 import CompFun from './pages/UserPages/CompetitionPageUser';
 import Forum from './pages/UserPages/Forum';
 import CompDesc1 from './pages/UserPages/CompetitionDesc';
+import CompQuesPage from './pages/UserPages/CompQues';
+import Admincomp from './pages/AdminPages/AdminCompetition';
 
 const theme = extendTheme({
   fonts: {
@@ -108,6 +110,8 @@ const App = () => {
             <Route path="/competition" element={<CompFun/>} />
             <Route path="/forum" element={<Forum/>} />
             <Route path="/compdesc1" element={<CompDesc1/>} />
+            <Route path="/compques" element={<CompQuesPage/>}/>
+            <Route path="/admincomp" element={<Admincomp/>}/>
             
             
           </Routes>
