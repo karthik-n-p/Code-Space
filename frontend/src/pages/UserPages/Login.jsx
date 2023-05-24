@@ -3,6 +3,10 @@ import { Box, Flex, Divider, Text, Input, Button, Heading,Alert,AlertIcon } from
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import { getAuth, signInWithEmailAndPassword,sendPasswordResetEmail,signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { useNavigate,Link } from 'react-router-dom';
+import axios from 'axios';
+
+
+
 
 const LoginPage = ({ handleSignupSuccess }) => {
   const navigate = useNavigate();
@@ -11,6 +15,40 @@ const LoginPage = ({ handleSignupSuccess }) => {
   // showing login failed error after entering wrong credentials
   const [error, setError] = React.useState(null);
   const [resetPasswordMessage, setResetPasswordMessage] = React.useState('');
+  const [isadmin, setIsadmin] = React.useState(false);
+
+const checkAdmin = async (user) => {
+   
+    const uid=user.uid;
+    console.log(uid);
+    //post request to backend to check if user is admin or not using axios passing uid as parameter
+    axios.post('http://localhost:3000/admin-status', {uid})
+    .then((response) => {
+      console.log("check admin status",response.data.isAdmin);
+      if(response.data){
+        setIsadmin(response.data.isAdmin);
+        
+      }
+      if(isadmin){
+        navigate('/admin')
+      }
+      else{
+        navigate('/')
+      }
+    }
+    )
+    .catch((error) => {
+      console.log(error);
+    }
+    );
+
+    
+
+    
+    
+ 
+};
+
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -28,7 +66,10 @@ const LoginPage = ({ handleSignupSuccess }) => {
       };
       // Redirect the user to the desired page upon successful login
       navigate('/');
+     
       handleSignupSuccess(userData)
+      checkAdmin(auth.currentUser)
+     
       
     } catch (error) {
       if(error.code === 'auth/user-not-found'){
@@ -69,8 +110,11 @@ const LoginPage = ({ handleSignupSuccess }) => {
       
       };
       console.log('Google sign-in successful', userData);
-      navigate('/');
+      
+    
+
       handleSignupSuccess(userData);
+      checkAdmin(user);
     } catch (error) {
       console.log('Google sign-in failed', error);
     }
