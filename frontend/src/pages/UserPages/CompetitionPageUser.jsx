@@ -1,5 +1,6 @@
-import { Box, Divider, HStack, Radio, RadioGroup, Stack, Text ,Link} from "@chakra-ui/react";
+import { Box, Divider, HStack, Radio, RadioGroup, Stack, Text } from "@chakra-ui/react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 function CompFun() {
     return(

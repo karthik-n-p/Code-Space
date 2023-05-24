@@ -25,6 +25,7 @@ import CompQuesPage from './pages/UserPages/CompQues';
 import Admincomp from './pages/AdminPages/AdminCompetition';
 import CreateCompetitionForm from './pages/AdminPages/AdminCreateComp';
 import CreateQuestionForm from './pages/AdminPages/QuestionCreation';
+import Adminquestion from './pages/AdminPages/AdminQuestion';
 
 const theme = extendTheme({
   fonts: {
@@ -116,7 +117,8 @@ const App = () => {
             <Route path="/admincomp" element={<Admincomp/>}/>
             <Route path="/createcomp" element={<CreateCompetitionForm/>}/>
             <Route path="/createques" element={<CreateQuestionForm/>}/>
-            
+            <Route path="/adminquestion" element={<Adminquestion/>}/>
+
           </Routes>
 
         </ChakraProvider>
