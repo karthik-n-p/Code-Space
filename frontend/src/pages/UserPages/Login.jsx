@@ -29,11 +29,15 @@ const checkAdmin = async (user) => {
         setIsadmin(response.data.isAdmin);
         
       }
-      if(isadmin){
+      if(response.data.isAdmin){
+        handleSignupSuccess(user,response.data.isAdmin)
         navigate('/admin')
+
       }
       else{
+        handleSignupSuccess(user,response.data.isAdmin)
         navigate('/')
+
       }
     }
     )
@@ -65,10 +69,9 @@ const checkAdmin = async (user) => {
         // Add other user data properties as needed
       };
       // Redirect the user to the desired page upon successful login
-      navigate('/');
-     
-      handleSignupSuccess(userData)
       checkAdmin(auth.currentUser)
+     
+      
      
       
     } catch (error) {
@@ -113,7 +116,7 @@ const checkAdmin = async (user) => {
       
     
 
-      handleSignupSuccess(userData);
+     
       checkAdmin(user);
     } catch (error) {
       console.log('Google sign-in failed', error);

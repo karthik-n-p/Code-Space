@@ -1,28 +1,34 @@
 import React from "react";
-import { Box, Divider, HStack, Image, Input, InputGroup, InputLeftElement, Text } from "@chakra-ui/react";
-import { FaBars, FaIcons, FaSearch } from "react-icons/fa";
+import { Box, Divider, HStack, Input, InputGroup, InputLeftElement, Text } from "@chakra-ui/react";
+import { FaBars, FaSearch } from "react-icons/fa";
 
 import { useState } from "react";
 import { Icon, Flex, Collapse, useOutsideClick } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+
 
 
 const MenuBar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = React.useRef();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const menuRef = React.useRef();
+  
+    const handleMenuToggle = () => {
+      setIsMenuOpen(!isMenuOpen);
+    };
+  
+    const handleCloseMenu = () => {
+      setIsMenuOpen(false);
+    };
+  
+    useOutsideClick({
+      ref: menuRef,
+      handler: handleCloseMenu,
+    });
 
-  const handleMenuToggle = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const handleCloseMenu = () => {
-    setIsMenuOpen(false);
-  };
-
-  useOutsideClick({
-    ref: menuRef,
-    handler: handleCloseMenu,
-  });
+      
 
 
 
@@ -54,22 +60,39 @@ const MenuBar = () => {
   );
 }
 
-const MenuBar2 = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+const MenuBar2 = ({competitionId}) => {
+  console.log("competitionId", competitionId);
+  
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = React.useRef();
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleCloseMenu = () => {
-    setIsMenuOpen(false);
-  };
+  
+  const navigate = useNavigate();
+  const handledlt = () => {
+  
+    axios
+    .delete(`http://localhost:3000/delete-competition/${competitionId}`)
+    .then((response) => {
+      console.log("response.data", response.data);
+    }
+    )
+    .catch((error) => {
+      console.log(error);
+    });
+    navigate('/admincompetition')
+    setIsMenuOpen(!isMenuOpen);
+  }
 
-  useOutsideClick({
-    ref: menuRef,
-    handler: handleCloseMenu,
-  });
+
+
+
+
+
+ 
 
   
     return (
@@ -93,7 +116,7 @@ const MenuBar2 = () => {
             {/* Menu content goes here */}
             <p>Edit</p>
                       <Divider borderColor={"#808191"} width={50}/>
-            <p>Delete</p>
+            <p onClick={handledlt}>Delete</p>
             
           </Box>
         </Collapse>
@@ -101,10 +124,47 @@ const MenuBar2 = () => {
     );
   }
 
-function Admincomp(){
-    return(
-        <div>
-           <Text fontWeight={"semibold"} fontSize={30} color={"white"} ml="280px"> Competitions</Text>
+const Competition = () => {
+  const [ongoingCompetitions, setOngoingCompetitions] = useState([]);
+  const [upcomingCompetitions, setUpcomingCompetitions] = useState([]);
+
+  // Modify your useEffect callback function
+useEffect(() => {
+  // Fetch upcoming competitions
+  axios
+    .get("http://localhost:3000/get-upcoming-competitions")
+    .then((response) => {
+      console.log("response.data", response.data);
+      const upcomingCompetitionsArray = response.data.upcomingCompetitions;
+      console.log("upcomingCompetitionsArray", upcomingCompetitionsArray);
+
+      // Assuming the first array contains the competitions
+      if (upcomingCompetitionsArray.length > 0) {
+        const firstCompetitionName = upcomingCompetitionsArray[0].competitionName;
+        console.log("First Competition Name:", firstCompetitionName);
+      }
+
+      setUpcomingCompetitions(upcomingCompetitionsArray);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  // Remaining code...
+}, []);
+
+const handleCompetitionDeleted = (competitionId) => {
+  // Update the state to remove the deleted competition
+  setUpcomingCompetitions((prevCompetitions) =>
+    prevCompetitions.filter((comp) => comp.competitionId !== competitionId)
+  );
+};
+
+
+  return (
+<div>
+
+ <Text fontWeight={"semibold"} fontSize={30} color={"white"} ml="280px"> Competitions</Text>
            <Box w="1200px" h="60px" mt="20px" bg="#353340" ml="280px" borderWidth={2}>
             <HStack w="1200px" pt="8px" spacing={10} ml="20px">
                 <HStack w="600px" mb={2}>
@@ -126,6 +186,10 @@ function Admincomp(){
             </HStack>
             <HStack w="1200px" spacing="600px" mt="20px">
             <Text fontWeight={"semibold"} fontSize={22} mt="10px" w="380px" >Ongoing Competitions</Text>
+            <Link to="/createcomp">
+            <Box bg="#2EC866" w="220px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
+                            <Text color="white" fontWeight={"bold"} paddingTop={1}>Create Competiiton</Text>
+                        </Box></Link>
             
             </HStack>
 
@@ -135,10 +199,10 @@ function Admincomp(){
                     <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Competiiton Name</Text>
                     </Box>
                     <Box bg="#808191" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Competition No</Text>
+                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Start Date</Text>
                     </Box>
                     <Box bg="#808191" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Start Date</Text>
+                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">End Date</Text>
                     </Box>
                     <Box bg="#808191" w="270px" h="50px" borderWidth={2} align="center">
                     <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Participants</Text>
@@ -151,246 +215,100 @@ function Admincomp(){
                     </Box>
                 </HStack>
             </Box>
-
-            <Box w="1200" h="50px" mt="3px">
-                <HStack w="1200">
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Number Mirror</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">P1011</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">21-Aug-2023</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">42</Text>
-                    </Box>
-                    <Box bg="#353340" w="70px" h="50px" borderWidth={2} align="center" paddingTop={3}>
-                        <MenuBar2/>
-    
-    
-    
-                    </Box>
+           
+            {upcomingCompetitions.map((competition) => (
+             
+              <Box key={competition.id} w="1200px">
+                <HStack>
+                  <Box
+                    bg="#353340"
+                    w="270px"
+                    h="50px"
+                    borderWidth={2}
+                    align="center"
+                  >
+                    <Text
+                      fontWeight="semibold"
+                      fontSize={18}
+                      mt="10px"
+                      w="270px"
+                      color="white"
+                    >
+                      {competition.competitionName}
+                    </Text>
+                  </Box>
+                  <Box
+                    bg="#353340"
+                    w="270px"
+                    h="50px"
+                    borderWidth={2}
+                    align="center"
+                  >
+                    <Text
+                      fontWeight="semibold"
+                      fontSize={18}
+                      mt="10px"
+                      w="270px"
+                      color="white"
+                    >
+                      {competition.startDate}
+                    </Text>
+                  </Box>
+                  <Box
+                    bg="#353340"
+                    w="270px"
+                    h="50px"
+                    borderWidth={2}
+                    align="center"
+                  >
+                    <Text
+                      fontWeight="semibold"
+                      fontSize={18}
+                      mt="10px"
+                      w="270px"
+                      color="white"
+                    >
+                      {competition.endDate}
+                    </Text>
+                  </Box>
+                  <Box
+                    bg="#353340"
+                    w="270px"
+                    h="50px"
+                    borderWidth={2}
+                    align="center"
+                  >
+                    <Text
+                      fontWeight="semibold"
+                      fontSize={18}
+                      mt="10px"
+                      w="270px"
+                      color="white"
+                    >
+                      {competition.participants}
+                    </Text>
+                  </Box>
+                  <Box
+                    bg="#353340"
+                    w="70px"
+                    h="50px"
+                    borderWidth={2}
+                    align="center"
+                    paddingTop={3}
+                  >
+                  <MenuBar2 competitionId={competition.competitionId} onCompetitionDeleted={handleCompetitionDeleted}/>
+                  </Box>
                 </HStack>
-            </Box>
+                <Divider mt={2} />
+              </Box>
+            ))}
+          </Box>
+        
 
-            <Box w="1200" h="50px" mt="3px">
-                <HStack w="1200">
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Age Limit</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">P1012</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">14-Sep-2023</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">32</Text>
-                    </Box>
-                    <Box bg="#353340" w="70px" h="50px" borderWidth={2} align="center" paddingTop={3}>
-                        <MenuBar2/>
     
-    
-    
-                    </Box>
-                </HStack>
-            </Box>
-            <Box w="1200" h="50px" mt="3px">
-                <HStack w="1200">
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Good Turn</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">P1013</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">30-Oct-2023</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">21</Text>
-                    </Box>
-                    <Box bg="#353340" w="70px" h="50px" borderWidth={2} align="center" paddingTop={3}>
-                        <MenuBar2/>
-    
-    
-    
-                    </Box>
-                </HStack>
-            </Box>
 
-            <HStack w="1200px" spacing="570px" mt="20px">
-            <Text fontWeight={"semibold"} fontSize={22} mt="10px" w="380px" >Upcomming Competitions</Text>
-            <Link to="/createcomp">
-            <Box bg="#2EC866" w="220px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
-                            <Text color="white" fontWeight={"bold"} paddingTop={1}>Create Competiiton</Text>
-                        </Box></Link>
-            </HStack>
+</div>
+  );
+};
 
-            <Box w="1200" h="50px" mt="10px">
-                <HStack w="1200">
-                    <Box bg="#808191" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Competiiton Name</Text>
-                    </Box>
-                    <Box bg="#808191" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Competition No</Text>
-                    </Box>
-                    <Box bg="#808191" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Start Date</Text>
-                    </Box>
-                    <Box bg="#808191" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Time</Text>
-                    </Box>
-                    <Box bg="#808191" w="70px" h="50px" borderWidth={2} align="center" paddingTop={3}>
-                        <MenuBar/>
-    
-    
-    
-                    </Box>
-                </HStack>
-            </Box>
-
-            <Box w="1200" h="50px" mt="3px">
-                <HStack w="1200">
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Add Two Numbers</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">P1014</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">20-Dec-2023</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">09:30 AM</Text>
-                    </Box>
-                    <Box bg="#353340" w="70px" h="50px" borderWidth={2} align="center" paddingTop={3}>
-                        <MenuBar2/>
-    
-    
-    
-                    </Box>
-                </HStack>
-            </Box>
-
-            <Box w="1200" h="50px" mt="3px">
-                <HStack w="1200">
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Blockify</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">P1015</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">31-Jan-2024</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">09:30 AM</Text>
-                    </Box>
-                    <Box bg="#353340" w="70px" h="50px" borderWidth={2} align="center" paddingTop={3}>
-                        <MenuBar2/>
-    
-    
-    
-                    </Box>
-                </HStack>
-            </Box>
-            <Box w="1200" h="50px" mt="3px">
-                <HStack w="1200">
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Saving Taxes</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">P1016</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">24-Feb-2024</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">09:30 AM</Text>
-                    </Box>
-                    <Box bg="#353340" w="70px" h="50px" borderWidth={2} align="center" paddingTop={3}>
-                        <MenuBar2/>
-    
-    
-    
-                    </Box>
-                </HStack>
-            </Box>
-
-            <Box w="1200" h="50px" mt="3px">
-                <HStack w="1200">
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Fitness</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">P1017</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">14-Mar-2024</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">09:30 AM</Text>
-                    </Box>
-                    <Box bg="#353340" w="70px" h="50px" borderWidth={2} align="center" paddingTop={3}>
-                        <MenuBar2/>
-    
-    
-    
-                    </Box>
-                </HStack>
-            </Box>
-            <Box w="1200" h="50px" mt="3px">
-                <HStack w="1200">
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Squats</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">P1018</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">30-Mar-2024</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">09:30 AM</Text>
-                    </Box>
-                    <Box bg="#353340" w="70px" h="50px" borderWidth={2} align="center" paddingTop={3}>
-                        <MenuBar2/>
-    
-    
-    
-                    </Box>
-                </HStack>
-            </Box>
-            <Box w="1200" h="50px" mt="3px">
-                <HStack w="1200">
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Boundary Maker</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">P1016</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">11-Apr-2024</Text>
-                    </Box>
-                    <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">09:30 AM</Text>
-                    </Box>
-                    <Box bg="#353340" w="70px" h="50px" borderWidth={2} align="center" paddingTop={3}>
-                        <MenuBar2/>
-    
-    
-    
-                    </Box>
-                </HStack>
-            </Box>
-
-
-           </Box>
-            
-        </div>
-    )
-}
-
-export default Admincomp;
+export default Competition;

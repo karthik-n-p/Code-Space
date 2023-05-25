@@ -1,5 +1,6 @@
-import { Box, Divider, HStack, Radio, RadioGroup, Stack, Text ,Link} from "@chakra-ui/react";
+import { Box, Divider, HStack, Radio, RadioGroup, Stack, Text } from "@chakra-ui/react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 function CompFun() {
     return(
@@ -12,19 +13,16 @@ function CompFun() {
             <div w="800px">
                 <Text fontWeight={"bold"} fontSize={20} color={"white"}  w="800px">Ongoing Competitions</Text>
                 <Box  h="60px" w="700px" mt="10px" borderRadius={10} borderWidth={2}>
-                    
-                    <HStack w="695px" paddingTop="8px">
-                        <Text color={"#2EC866"}  pl="15px" fontSize={22} w="300px">Number Mirror</Text>
-                        <Text color={"#808191"}  pl="15px" fontSize={14}  w="240px">21-May-2023 ,  09:30 IST  </Text>
-                        <Link to="/compdesc1">
-                        <Box bg="#2EC866" w="120px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
-                            <Text color="white" fontWeight={"bold"} paddingTop={1}>Join</Text>
-                        </Box>
-                        </Link>
-                   
 
-
-                    </HStack>
+                   <Link to="/compques">
+                            <HStack w="695px" paddingTop="8px">
+                                <Text color={"#2EC866"}  pl="15px" fontSize={22} w="300px">Number Mirror</Text>
+                                <Text color={"#808191"}  pl="15px" fontSize={14}  w="240px">21-May-2023 ,  09:30 IST  </Text>
+                                        <Box bg="#2EC866" w="120px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
+                                            <Text color="white" fontWeight={"bold"} paddingTop={1}>Join</Text>
+                                        </Box>
+                            </HStack>
+                    </Link>
                     
                 </Box>
                 <Box  h="60px" w="700px" mt="10px" borderRadius={10} borderWidth={2}>

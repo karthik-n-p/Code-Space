@@ -163,6 +163,194 @@ app.get('/submission/:submissionId', async (req, res) => {
   
     // Now you can use the Firebase Admin SDK to access Firebase services
     // and perform administrative tasks, such as managing users, database operations, etc.
+
+
+
+
+
+    //Post request to create competition with competition name start date time and end date time decription assingn a unique id to each competition
+
+    app.post('/create-competition', async (req, res) => {
+      const { competitionName, startDate, startTime, endDate, endTime, description } = req.body;
+
+      try {
+        const competition = await admin.firestore().collection('competitions').add({
+          competitionName,
+          startDate,
+          startTime,
+          endDate,
+          endTime,
+          description
+        });
+        res.status(200).json({ competitionId: competition.id });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Something went wrong' });
+      }
+    });
+
+
+
+
+    
+
+
+    //get request to get upcoming competitions by comparing current date and time with start date and time of competition
+    app.get('/get-upcoming-competitions', async (req, res) => {
+      try {
+        const competitions = await admin.firestore().collection('competitions').get();
+        const upcomingCompetitions = [];
+        const currentDate = new Date();
+        competitions.forEach((competition) => {
+          const startDateTime = new Date(`${competition.data().startDate}T${competition.data().startTime}`);
+          const endDateTime = new Date(`${competition.data().endDate}T${competition.data().endTime}`); 
+          if (startDateTime > currentDate) {
+            upcomingCompetitions.push({
+              competitionId: competition.id,
+              ...competition.data()
+            });
+          }
+        });
+        res.status(200).json({ upcomingCompetitions });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Something went wrong' });
+      }
+    });
+
+    //get request to get ongoing competitions by comparing current date and time with start date and time of competition 
+    app.get('/get-ongoing-competitions', async (req, res) => {
+      try {
+        const competitions = await admin.firestore().collection('competitions').get();
+        const ongoingCompetitions = [];
+        const currentDate = new Date();
+        competitions.forEach((competition) => {
+          const startDateTime = new Date(`${competition.data().startDate}T${competition.data().startTime}`);
+          const endDateTime = new Date(`${competition.data().endDate}T${competition.data().endTime}`);
+          if (startDateTime <= currentDate && endDateTime >= currentDate) {
+            ongoingCompetitions.push({
+              competitionId: competition.id,
+              ...competition.data()
+            });
+          }
+        });
+        res.status(200).json({ ongoingCompetitions });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Something went wrong' });
+
+
+
+      }
+    });
+
+    //get request to get completed competitions by comparing current date and time with end date and time of competition
+    app.get('/get-completed-competitions', async (req, res) => {
+      try {
+        const competitions = await admin.firestore().collection('competitions').get();
+        const completedCompetitions = [];
+        const currentDate = new Date();
+        competitions.forEach((competition) => {
+          const startDateTime = new Date(`${competition.data().startDate}T${competition.data().startTime}`);
+          const endDateTime = new Date(`${competition.data().endDate}T${competition.data().endTime}`);
+          if (endDateTime < currentDate) {
+            completedCompetitions.push({
+              competitionId: competition.id,
+              ...competition.data()
+            });
+          }
+        });
+        res.status(200).json({ completedCompetitions });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Something went wrong' });
+      }
+    });
+
+
+    app.delete('/delete-competition/:competitionId', async (req, res) => {
+      try {
+        const { competitionId } = req.params;
+        console.log(competitionId)
+        await admin.firestore().collection('competitions').doc(competitionId).delete();
+        res.status(200).json({ message: 'Competition deleted successfully' });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Something went wrong' });
+      }
+    });
+
+    
+
+
+
+
+
+
+
+ 
+
+    //edit competition by competition id
+    app.post('/edit-competition/:competitionId', async (req, res) => {
+      const { competitionId } = req.params;
+      const { competitionName, startDate, startTime, endDate, endTime, description } = req.body;
+      try {
+        await admin.firestore().collection('competitions').doc(competitionId).update({
+          competitionName,
+          startDate,
+          startTime,
+          endDate,
+          endTime,
+          description
+        });
+        res.status(200).json({ message: 'Competition updated successfully' });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Something went wrong' });
+      }
+    });
+
+
+
+
+
+
+
+
+       
+  
+
+
+
+    
+
+
+   
+
+  
+    app.get('/get-competitions', async (req, res) => {
+      try {
+        const competitions = await admin.firestore().collection('competitions').get();
+        const competitionsList = [];
+        competitions.forEach((competition) => {
+          competitionsList.push({
+            competitionId: competition.id,
+            ...competition.data()
+          });
+        });
+        res.status(200).json({ competitionsList });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Something went wrong' });
+      }
+    });
+  //I want to categorize the competitions on their date and time to ongoin and upcoming competitions to display on home page
+  
+
+   
+
+    
+
     
   
   
@@ -171,6 +359,7 @@ app.get('/submission/:submissionId', async (req, res) => {
   
   // Start the server
   app.listen(3000, () => {
+    
     console.log('Server is running on port 3000');
     console.log('process.env.RAPIDAPI_KEY', api);
   });

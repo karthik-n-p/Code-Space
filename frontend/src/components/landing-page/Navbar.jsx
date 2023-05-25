@@ -7,6 +7,8 @@ import Logo from '../../assets/logo.png';
 import { FaLightbulb } from 'react-icons/fa';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import AuthContext from '../../pages/UserPages/AuthContext';
 
 
 
@@ -15,8 +17,9 @@ const Sidebar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [highlightedIcon, setHighlightedIcon] = useState('home');
 
- 
-  
+  const {isadmin} = useContext(AuthContext);
+
+  console.log("isadmin in sidebar",isadmin);
   const handleToggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
@@ -52,9 +55,9 @@ const Sidebar = () => {
      
       <VStack display={'flex'} spacing="10" alignItems={isExpanded ? 'left' : 'center'} p="30px">
       <Link to='/'>
-        <HStack spacing="20px">
+        <HStack spacing="20px" onClick={() => handleIconClick("home")}>
        
-          <Box width="43px" height="38px" borderRadius="12px"  display="flex" justifyContent="center" alignItems="center" name='home'  bg={highlightedIcon === "home" ? "btng" : "#32313B"} onClick={() => handleIconClick("home")}>
+          <Box width="43px" height="38px" borderRadius="12px"  display="flex" justifyContent="center" alignItems="center" name='home'  bg={highlightedIcon === "home" ? "btng" : "#32313B"} >
             <MdHome  color={highlightedIcon === "home" ? "white" : "#A0AEC0"}   size="30px" />   
           </Box>
         
@@ -66,10 +69,10 @@ const Sidebar = () => {
         </HStack>
         </Link>
         
-
+        {!isadmin && <>
         <Link to='/practice'>
-        <HStack spacing="20px" p="" >
-          <Box width="43px" height="38px" borderRadius="12px"  display="flex" justifyContent="center" alignItems="center"  name='home'  bg={highlightedIcon === "Practice" ? "btng" : "#32313B"} onClick={() => handleIconClick("Practice")}>
+        <HStack spacing="20px" p="" onClick={() => handleIconClick("Practice")}>
+          <Box width="43px" height="38px" borderRadius="12px"  display="flex" justifyContent="center" alignItems="center"  name='home'  bg={highlightedIcon === "Practice" ? "btng" : "#32313B"} >
             <FaLightbulb  size="25px"  color={highlightedIcon === "Practice" ? "white" : "#A0AEC0"}/>
           </Box>
          {isExpanded &&
@@ -78,9 +81,10 @@ const Sidebar = () => {
           </Text>}
         </HStack>
         </Link>
+        
         <Link to='/forum'>
-        <HStack spacing="20px" p="">
-          <Box width="43px" height="38px" borderRadius="12px"  display="flex" justifyContent="center" alignItems="center" name='Forum'  bg={highlightedIcon === "Forum" ? "btng" : "#32313B"} onClick={() => handleIconClick("Forum")}>
+        <HStack spacing="20px" p="" onClick={() => handleIconClick("Forum")}>
+          <Box width="43px" height="38px" borderRadius="12px"  display="flex" justifyContent="center" alignItems="center" name='Forum'  bg={highlightedIcon === "Forum" ? "btng" : "#32313B"} >
             <MdForum color={highlightedIcon === "Forum" ? "white" : "#A0AEC0"}   size="25px"  />
           </Box>
           {isExpanded &&
@@ -89,9 +93,11 @@ const Sidebar = () => {
           </Text>}
         </HStack>
         </Link>
-        <Link to='/competition'>
-        <HStack spacing="20px" p="">
-          <Box width="43px" height="38px" borderRadius="12px"  display="flex" justifyContent="center" alignItems="center" name='Contest'  bg={highlightedIcon === "Contest" ? "btng" : "#32313B"} onClick={() => handleIconClick("Contest")}>
+        </>}
+
+        <Link  to={isadmin?'admincompetition':'/competition'}>
+        <HStack spacing="20px" p="" onClick={() => handleIconClick("Contest")}>
+          <Box width="43px" height="38px" borderRadius="12px"  display="flex" justifyContent="center" alignItems="center" name='Contest'  bg={highlightedIcon === "Contest" ? "btng" : "#32313B"} >
             <MdStar color={highlightedIcon === "Contest" ? "white" : "#A0AEC0"} size="30px" />
           </Box>
           {isExpanded &&
@@ -100,9 +106,10 @@ const Sidebar = () => {
           </Text>}
         </HStack>
         </Link>
+        {!isadmin && 
         <Link to='/resource'>
-        <HStack spacing="20px" p="">
-          <Box width="43px" height="38px" borderRadius="12px"  name='Resources'  bg={highlightedIcon === "Resources" ? "btng" : "#32313B"} onClick={() => handleIconClick("Resources")}  display="flex" justifyContent="center" alignItems="center">
+        <HStack spacing="20px" p="" onClick={() => handleIconClick("Resources")}>
+          <Box width="43px" height="38px" borderRadius="12px"  name='Resources'  bg={highlightedIcon === "Resources" ? "btng" : "#32313B"}   display="flex" justifyContent="center" alignItems="center">
             <MdDescription color="#A0AEC0" size="30px" />
           </Box>
           {isExpanded &&
@@ -111,12 +118,15 @@ const Sidebar = () => {
           </Text>}
         </HStack>
         </Link>
-        {/* Add more navigation items here */}
+        }
+       
       </VStack>
+      {!isadmin &&<>
       <Divider orientation='horizontal' width={isExpanded?"200px" :'60px'}  borderWidth="px" borderColor="grey"  marginLeft={isExpanded?"30px" :'8px'} />
+      
       <VStack spacing="10" alignItems={isExpanded?"left":'center'} p="35px">
-      <HStack spacing="20px" p="">
-          <Box  width="43px" height="38px" borderRadius="12px"   name='Feedback'  bg={highlightedIcon === "Feedback" ? "btng" : "#32313B"} onClick={() => handleIconClick("Feedback")} display="flex" justifyContent="center" alignItems="center">
+      <HStack spacing="20px" p="" onClick={() => handleIconClick("Feedback")}>
+          <Box  width="43px" height="38px" borderRadius="12px"   name='Feedback'  bg={highlightedIcon === "Feedback" ? "btng" : "#32313B"}  display="flex" justifyContent="center" alignItems="center">
             <MdFeedback color="#A0AEC0" size="30px" />
           </Box>
           {isExpanded &&
@@ -125,8 +135,8 @@ const Sidebar = () => {
           </Text>}
         </HStack>
 
-        <HStack spacing="20px" p="">
-          <Box  width="43px" height="38px" borderRadius="12px"   name='About'  bg={highlightedIcon === "About" ? "btng" : "#32313B"} onClick={() => handleIconClick("About")} display="flex" justifyContent="center" alignItems="center">
+        <HStack spacing="20px" p="" onClick={() => handleIconClick("About")}>
+          <Box  width="43px" height="38px" borderRadius="12px"   name='About'  bg={highlightedIcon === "About" ? "btng" : "#32313B"}  display="flex" justifyContent="center" alignItems="center">
             <MdInfo color="#A0AEC0" size="30px" />
           </Box>
        {isExpanded &&
@@ -136,6 +146,9 @@ const Sidebar = () => {
         </HStack>
 
         </VStack>
+        </>
+}
+       
     </Box>
 
 

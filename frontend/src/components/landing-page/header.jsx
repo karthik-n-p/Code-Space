@@ -58,7 +58,7 @@ const Header = () => {
               </Circle>
             </Box>
 
-            <Flex alignItems="center" gap="5px">
+            <Flex alignItems="center" gap="5px"  onClick={handleToggleDropdown} cursor={'pointer'}>
               <IconButton
                 icon={<FaUser size="25px" />}
                 w="45px"
@@ -68,7 +68,7 @@ const Header = () => {
                 bg="#32313B"
                 size="md"
                 mr="5px"
-                onClick={handleToggleDropdown}
+               
               />
               {isRegistered ? (
                 <Flex gap="10px">
@@ -80,6 +80,8 @@ const Header = () => {
                     fontWeight={'400'}
                     fontStyle={'normal'}
                     fontFamily={'Poppins'}
+                   
+                    
                   >
                     {username}
                   </Text>

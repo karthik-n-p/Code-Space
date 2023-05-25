@@ -20,11 +20,13 @@ import Landingcards from './components/landing-page/Landingcards';
 import ResourcePage from './pages/UserPages/Resources';
 import CompFun from './pages/UserPages/CompetitionPageUser';
 import Forum from './pages/UserPages/Forum';
-import CompDesc1 from './pages/UserPages/CompetitionDesc';
+import CompDesc from './pages/UserPages/CompetitionDesc';
 import CompQuesPage from './pages/UserPages/CompQues';
 import Admincomp from './pages/AdminPages/AdminCompetition';
 import CreateCompetitionForm from './pages/AdminPages/AdminCreateComp';
 import CreateQuestionForm from './pages/AdminPages/QuestionCreation';
+import AdminDashboard from './pages/AdminPages/AdminDashboard';
+import CompQues from './components/Contest/InsideContest';
 
 const theme = extendTheme({
   fonts: {
@@ -50,19 +52,22 @@ const theme = extendTheme({
 const App = () => {
   const [isRegistered, setIsRegistered] = useState(false); // Whether the user is registered or not
   const [username, setUsername] = useState(''); // User's username
-  
+  const [isadmin, setIsadmin] = useState(false); // Whether the user is admin or not
   const afterlogout = () => {
     setIsRegistered(false);
   }; 
   
 
   // Function to handle signup success
-  const handleSignupSuccess = async () => {
+  const handleSignupSuccess = async (userdata,isAdmin) => {
     console.log("handleSignupSuccess");
+    console.log("inside handlesignup",isAdmin);
+    setIsadmin(isAdmin);
     
     try {
       const user = auth.currentUser;
       console.log("inside try",user)
+      const isadmin = isAdmin;
       if (user) {
         console.log("inside if(user)",user);
         const userDoc = await getDoc(doc(firestore, "username", user.uid));
@@ -88,7 +93,8 @@ const App = () => {
   return (
     <React.StrictMode>
 
-       <AuthContext.Provider value={{                                   
+       <AuthContext.Provider value={{ 
+    isadmin: isadmin,                                  
     isRegistered: isRegistered,
     setIsRegistered: setIsRegistered,
     username: username,
@@ -111,9 +117,15 @@ const App = () => {
             <Route path="/resource" element={<ResourcePage/>} />
             <Route path="/competition" element={<CompFun/>} />
             <Route path="/forum" element={<Forum/>} />
-            <Route path="/compdesc1" element={<CompDesc1/>} />
-            <Route path="/compques" element={<CompQuesPage/>}/>
-            <Route path="/admincomp" element={<Admincomp/>}/>
+            <Route path="/compdesc" element={<CompDesc/>} />
+
+            {/* admin */}
+            <Route path="/admin" element={<AdminDashboard/>} />
+            <Route path="/admincompetition" element={<Admincomp/>}/>
+
+            {/* //These two components are same */}
+            <Route path="/compques" element={<CompQuesPage/>}/>  
+            {/* <Route path="/compques" element={<CompQues/>}/> */}
             <Route path="/createcomp" element={<CreateCompetitionForm/>}/>
             <Route path="/createques" element={<CreateQuestionForm/>}/>
             
