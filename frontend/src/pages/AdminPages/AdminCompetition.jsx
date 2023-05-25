@@ -172,7 +172,7 @@ const handleCompetitionDeleted = (competitionId) => {
                     <Text fontWeight={"semibold"}>Manage Competitions</Text>
                 </Box>
                 <Box w="200px" h="60px" pt="18px">
-                <Text fontWeight={"semibold"} ml="10px">Manage Questions</Text>
+                <Link to="/adminquestion"><Text fontWeight={"semibold"} ml="10px">Manage Questions</Text></Link>
                 </Box></HStack>
                 <HStack w="600px" justify={"flex-end"}>
                 

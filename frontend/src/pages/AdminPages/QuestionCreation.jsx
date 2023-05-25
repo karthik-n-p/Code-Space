@@ -95,10 +95,10 @@ const CreateQuestionForm = () => {
       </InputGroup>  
 
       {/* Buttons */}
-      <Link to="/admincompetition"><Button bg="btng" color="txtw" pos={'absolute'} left="370px" top="1180px">
+      <Link to="/adminQuestion"><Button bg="btng" color="txtw" pos={'absolute'} left="370px" top="1180px">
         Save
       </Button></Link>
-      <Link to="/admincompetition"><Button bg="btng" color="txtw" pos={'absolute'} left="470px" top="1180px">
+      <Link to="/adminquestion"><Button bg="btng" color="txtw" pos={'absolute'} left="470px" top="1180px">
         Cancel
       </Button></Link>
      

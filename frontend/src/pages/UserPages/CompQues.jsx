@@ -1,6 +1,7 @@
-import { Box, Divider, HStack, Link, Spacer, Text } from "@chakra-ui/react";
+import { Box, Divider, HStack, Text } from "@chakra-ui/react";
 import React from "react";
 import { FaEnvelope, FaInbox, FaList, FaMedal } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const CompQuesPage = () =>{
     return(
