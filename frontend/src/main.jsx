@@ -26,6 +26,7 @@ import Admincomp from './pages/AdminPages/AdminCompetition';
 import CreateCompetitionForm from './pages/AdminPages/AdminCreateComp';
 import CreateQuestionForm from './pages/AdminPages/QuestionCreation';
 import Adminquestion from './pages/AdminPages/AdminQuestion';
+import AdminDashboard from './pages/AdminPages/AdminDashboard';
 
 const theme = extendTheme({
   fonts: {

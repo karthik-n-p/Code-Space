@@ -108,7 +108,7 @@ const MenuBar = () => {
             <HStack w="1200px" pt="8px" spacing={10} ml="20px">
                 <HStack w="600px" mb={2}>
                 <Box w="200px" h="60px" pt="18px">
-                <Link to="/admincomp"><Text fontWeight={"semibold"} ml="10px">Manage Competitions</Text></Link>
+                <Link to="/admincompetition"><Text fontWeight={"semibold"} ml="10px">Manage Competitions</Text></Link>
                 </Box>
                 <Box bg="#1A202C" borderWidth={2} w="250px" h="40px" pt="8px" align="center" borderBottom={"none"}>
                     <Text fontWeight={"semibold"}>Manage Questions</Text>

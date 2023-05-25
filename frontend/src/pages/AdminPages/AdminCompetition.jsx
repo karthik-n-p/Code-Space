@@ -169,7 +169,7 @@ const handleCompetitionDeleted = (competitionId) => {
             <HStack w="1200px" pt="8px" spacing={10} ml="20px">
                 <HStack w="600px" mb={2}>
                 <Box bg="#1A202C" borderWidth={2} w="250px" h="40px" pt="8px" align="center" borderBottom={"none"}>
-                    <Text fontWeight={"semibold"}>Manage Competitions</Text>
+                <Link to="/admincompetition">    <Text fontWeight={"semibold"}>Manage Competitions</Text> </Link>
                 </Box>
                 <Box w="200px" h="60px" pt="18px">
                 <Link to="/adminquestion"><Text fontWeight={"semibold"} ml="10px">Manage Questions</Text></Link>
@@ -185,7 +185,7 @@ const handleCompetitionDeleted = (competitionId) => {
         </HStack>
             </HStack>
             <HStack w="1200px" spacing="600px" mt="20px">
-            <Text fontWeight={"semibold"} fontSize={22} mt="10px" w="380px" >Ongoing Competitions</Text>
+            <Text fontWeight={"semibold"} fontSize={22} mt="10px" w="380px" >Upcoming Competitions</Text>
             <Link to="/createcomp">
             <Box bg="#2EC866" w="220px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
                             <Text color="white" fontWeight={"bold"} paddingTop={1}>Create Competiiton</Text>

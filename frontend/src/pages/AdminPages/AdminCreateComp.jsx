@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { useNavigate } from 'react-router-dom';
 
 
 const CreateCompetitionForm = () => {
+  const navigate = useNavigate();
   const [selectedDateTime, setSelectedDateTime] = React.useState(null);
   const [selectedDateTimeEnd, setSelectedDateTimeEnd] = React.useState(null);
   const [startDate, setStartDate] = React.useState('');
@@ -90,6 +92,9 @@ const CreateCompetitionForm = () => {
       .catch((error) => {
         console.log(error);
       });
+
+      navigate('/admincompetition');
+      
   };
   
   
@@ -215,11 +220,12 @@ const CreateCompetitionForm = () => {
 
           {/* Buttons */}
           <HStack gap={5} mb={10}>
-          <Link to="/admincompetition">
+         
             <Button bg="btng" color="txtw" onClick={createCompetition}>
+
               Create
             </Button>
-          </Link>
+      
           <Link to="/admincompetition">
             <Button bg="btng" color="txtw">
               Cancel
