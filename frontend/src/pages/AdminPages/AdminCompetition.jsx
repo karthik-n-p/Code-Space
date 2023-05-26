@@ -8,6 +8,7 @@ import { Link} from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
 
 
 
@@ -123,8 +124,17 @@ const MenuBar2 = ({competitionId}) => {
       </Flex>
     );
   }
+  
+  function calculateDaysLeft(targetDate) {
+    const today = moment();
+    const daysLeft = targetDate.diff(today, 'days');
+    return daysLeft;
+  }
+  
 
 const Competition = () => {
+  
+  
   const [ongoingCompetitions, setOngoingCompetitions] = useState([]);
   const [upcomingCompetitions, setUpcomingCompetitions] = useState([]);
 
@@ -159,6 +169,8 @@ const handleCompetitionDeleted = (competitionId) => {
     prevCompetitions.filter((comp) => comp.competitionId !== competitionId)
   );
 };
+const today= moment();
+
 
 
   return (
@@ -184,19 +196,19 @@ const handleCompetitionDeleted = (competitionId) => {
         </InputGroup>
         </HStack>
             </HStack>
+
             <HStack w="1200px" spacing="600px" mt="20px">
-            <Text fontWeight={"semibold"} fontSize={22} mt="10px" w="380px" >Upcoming Competitions</Text>
+            <Text fontWeight={"semibold"} fontSize={22} mt="10px" w="380px" >Active Competitions</Text>
             <Link to="/createcomp">
             <Box bg="#2EC866" w="220px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
-                            <Text color="white" fontWeight={"bold"} paddingTop={1}>Create Competiiton</Text>
+                            <Text color="white" fontWeight={"bold"} paddingTop={1}>Create Competition</Text>
                         </Box></Link>
             
             </HStack>
-
             <Box w="1200" h="50px" mt="10px">
                 <HStack w="1200">
                     <Box bg="#808191" w="270px" h="50px" borderWidth={2} align="center">
-                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Competiiton Name</Text>
+                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Competition Name</Text>
                     </Box>
                     <Box bg="#808191" w="270px" h="50px" borderWidth={2} align="center">
                     <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Start Date</Text>
@@ -215,9 +227,14 @@ const handleCompetitionDeleted = (competitionId) => {
                     </Box>
                 </HStack>
             </Box>
-           
-            {upcomingCompetitions.map((competition) => (
              
+           
+            {upcomingCompetitions
+        .filter(competition => moment(competition.startDate).isBefore(today))
+        .map(competition => (
+            
+             
+            
               <Box key={competition.id} w="1200px">
                 <HStack>
                   <Box
@@ -285,7 +302,7 @@ const handleCompetitionDeleted = (competitionId) => {
                       w="270px"
                       color="white"
                     >
-                      {competition.participants}
+                      {competition.participants !== null && competition.participants !== undefined ? competition.participants : 0}
                     </Text>
                   </Box>
                   <Box
@@ -301,7 +318,141 @@ const handleCompetitionDeleted = (competitionId) => {
                 </HStack>
                 <Divider mt={2} />
               </Box>
+              
             ))}
+
+<HStack w="1200px" spacing="600px" mt="20px">
+            <Text fontWeight={"semibold"} fontSize={22} mt="10px" w="380px" >Upcomming Competitions</Text>
+            
+            
+            </HStack>
+            <Box w="1200" h="50px" mt="10px">
+                <HStack w="1200">
+                    <Box bg="#808191" w="270px" h="50px" borderWidth={2} align="center">
+                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Competition Name</Text>
+                    </Box>
+                    <Box bg="#808191" w="270px" h="50px" borderWidth={2} align="center">
+                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Start Date</Text>
+                    </Box>
+                    <Box bg="#808191" w="270px" h="50px" borderWidth={2} align="center">
+                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">End Date</Text>
+                    </Box>
+                    <Box bg="#808191" w="270px" h="50px" borderWidth={2} align="center">
+                    <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Starts In</Text>
+                    </Box>
+                    <Box bg="#808191" w="70px" h="50px" borderWidth={2} align="center" paddingTop={3}>
+                        <MenuBar/>
+    
+    
+                    </Box>
+                </HStack>
+            </Box>
+            
+             
+           
+            {upcomingCompetitions
+        .filter(competition => moment(competition.startDate).isAfter(today))
+        .map(competition => {
+  const startDate = moment(competition.startDate);
+  const today = moment();
+  const daysLeft = startDate.diff(today, 'days');
+
+  return (
+    <Box key={competition.id} w="1200px">
+      <HStack>
+        <Box
+          bg="#353340"
+          w="270px"
+          h="50px"
+          borderWidth={2}
+          align="center"
+        >
+          <Text
+            fontWeight="semibold"
+            fontSize={18}
+            mt="10px"
+            w="270px"
+            color="white"
+          >
+            {competition.competitionName}
+          </Text>
+        </Box>
+        <Box
+          bg="#353340"
+          w="270px"
+          h="50px"
+          borderWidth={2}
+          align="center"
+        >
+          <Text
+            fontWeight="semibold"
+            fontSize={18}
+            mt="10px"
+            w="270px"
+            color="white"
+          >
+            {competition.startDate}
+          </Text>
+        </Box>
+        <Box
+          bg="#353340"
+          w="270px"
+          h="50px"
+          borderWidth={2}
+          align="center"
+        >
+          <Text
+            fontWeight="semibold"
+            fontSize={18}
+            mt="10px"
+            w="270px"
+            color="white"
+          >
+            {competition.endDate}
+          </Text>
+        </Box>
+        <Box
+          bg="#353340"
+          w="270px"
+          h="50px"
+          borderWidth={2}
+          align="center"
+        >
+          <Text
+            fontWeight="semibold"
+            fontSize={18}
+            mt="10px"
+            w="270px"
+            color="white"
+          >
+            {daysLeft} days left
+          </Text>
+        </Box>
+        <Box
+          bg="#353340"
+          w="70px"
+          h="50px"
+          borderWidth={2}
+          align="center"
+          paddingTop={3}
+        >
+          <MenuBar2 competitionId={competition.competitionId} onCompetitionDeleted={handleCompetitionDeleted}/>
+        </Box>
+      </HStack>
+      <Divider mt={2} />
+    </Box>
+  );
+})}
+
+
+
+
+
+
+
+
+
+
           </Box>
         
 

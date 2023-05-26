@@ -14,7 +14,7 @@ function CompFun() {
                 <Text fontWeight={"bold"} fontSize={20} color={"white"}  w="800px">Ongoing Competitions</Text>
                 <Box  h="60px" w="700px" mt="10px" borderRadius={10} borderWidth={2}>
 
-                   <Link to="/compques">
+                   <Link to="/compdesc">
                             <HStack w="695px" paddingTop="8px">
                                 <Text color={"#2EC866"}  pl="15px" fontSize={22} w="300px">Number Mirror</Text>
                                 <Text color={"#808191"}  pl="15px" fontSize={14}  w="240px">21-May-2023 ,  09:30 IST  </Text>
@@ -29,7 +29,7 @@ function CompFun() {
                     <HStack w="695px" paddingTop="8px">
                         <Text color={"#2EC866"}  pl="15px" fontSize={22} w="300px">Age Limit</Text>
                         <Text color={"#808191"}  pl="15px" fontSize={14}  w="240px">14-Sep-2023 ,  09:30 IST  </Text>
-                        <Link to="/compdesc1">
+                        <Link to="/compdesc">
                         <Box bg="#2EC866" w="120px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
                             <Text color="white" fontWeight={"bold"} paddingTop={1}>Join</Text>
                         </Box>
@@ -42,7 +42,7 @@ function CompFun() {
                     <HStack w="695px" paddingTop="8px">
                         <Text color={"#2EC866"}  pl="15px" fontSize={22} w="300px">Good Turn</Text>
                         <Text color={"#808191"}  pl="15px" fontSize={14}  w="240px">30-Oct-2023 ,  09:30 IST  </Text>
-                        <Link to="/compdesc1">
+                        <Link to="/compdesc">
                         <Box bg="#2EC866" w="120px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
                             <Text color="white" fontWeight={"bold"} paddingTop={1}>Join</Text>
                         </Box>
@@ -56,7 +56,7 @@ function CompFun() {
                     <HStack w="695px" paddingTop="8px">
                         <Text color={"#808191"}  pl="15px" fontSize={22} w="300px">Add Two Numbers</Text>
                         <Text color={"#808191"}  pl="15px" fontSize={14}  w="240px">20-Dec-2023 ,  09:30 IST  </Text>
-                        <Link to="/compdesc1">
+                        <Link to="/compdesc">
                         <Box bg="#808191" w="120px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
                             <Text color="white" fontWeight={"bold"} paddingTop={1}>View</Text>
                         </Box>
@@ -68,7 +68,7 @@ function CompFun() {
                     <HStack w="695px" paddingTop="8px">
                         <Text color={"#808191"}  pl="15px" fontSize={22} w="300px">Blockify</Text>
                         <Text color={"#808191"}  pl="15px" fontSize={14}  w="240px">31-Jan-2024 ,  09:30 IST  </Text>
-                        <Link to="/compdesc1">
+                        <Link to="/compdesc">
                         <Box bg="#808191" w="120px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
                             <Text color="white" fontWeight={"bold"} paddingTop={1}>View</Text>
                         </Box>
@@ -81,7 +81,7 @@ function CompFun() {
                     <HStack w="695px" paddingTop="8px">
                         <Text color={"#808191"}  pl="15px" fontSize={22} w="300px">Saving Taxes</Text>
                         <Text color={"#808191"}  pl="15px" fontSize={14}  w="240px">24-Feb-2024 ,  09:30 IST  </Text>
-                        <Link to="/compdesc1">
+                        <Link to="/compdesc">
                         <Box bg="#808191" w="120px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
                             <Text color="white" fontWeight={"bold"} paddingTop={1}>View</Text>
                         </Box>
@@ -94,7 +94,7 @@ function CompFun() {
                     <HStack w="695px" paddingTop="8px">
                         <Text color={"#808191"}  pl="15px" fontSize={22} w="300px">Fitness</Text>
                         <Text color={"#808191"}  pl="15px" fontSize={14}  w="240px">14-Mar-2024 ,  09:30 IST  </Text>
-                        <Link to="/compdesc1">
+                        <Link to="/compdesc">
                         <Box bg="#808191" w="120px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
                             <Text color="white" fontWeight={"bold"} paddingTop={1}>View</Text>
                         </Box>
@@ -107,7 +107,7 @@ function CompFun() {
                     <HStack w="695px" paddingTop="8px">
                         <Text color={"#808191"}  pl="15px" fontSize={22} w="300px">Squats</Text>
                         <Text color={"#808191"}  pl="15px" fontSize={14}  w="240px">30-Mar-2024 ,  09:30 IST  </Text>
-                        <Link to="/compdesc1">
+                        <Link to="/compdesc">
                         <Box bg="#808191" w="120px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
                             <Text color="white" fontWeight={"bold"} paddingTop={1}>View</Text>
                         </Box>
@@ -122,7 +122,7 @@ function CompFun() {
                         <Text color={"#808191"}  pl="15px" fontSize={14}  w="240px">11-Apr-2024 ,  09:30 IST  </Text>
                         
                         <Box bg="#808191" w="120px" h="30px" paddingLeft={0} borderRadius={7} textAlign={"center"}>
-                        <Link to="/compdesc1"> <Text color="white" fontWeight={"bold"} paddingTop={1}>View</Text>                        </Link>
+                        <Link to="/compdesc"> <Text color="white" fontWeight={"bold"} paddingTop={1}>View</Text>                        </Link>
 
                         </Box>
 

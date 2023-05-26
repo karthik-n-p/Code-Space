@@ -1,5 +1,5 @@
 import React from "react";
-import { FaBars, FaSearch } from "react-icons/fa";
+import { FaBars, FaEdit, FaSearch, FaTrash } from "react-icons/fa";
 import { Box, Divider, HStack, Input, InputGroup, InputLeftElement, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { Icon, Flex, Collapse, useOutsideClick } from "@chakra-ui/react";
@@ -22,7 +22,11 @@ const MenuBar = () => {
       ref: menuRef,
       handler: handleCloseMenu,
     });
-  
+
+    const handleDeleteAll = () => {
+      // Perform the delete operation here
+      console.log('Item deleted');
+    };
   
   
     return (
@@ -45,7 +49,7 @@ const MenuBar = () => {
           >
             {/* Menu content goes here */}
             
-            <p>Delete All</p>
+            <p onClick={handleDeleteAll}>Delete All <FaTrash /></p>
             
           </Box>
         </Collapse>
@@ -69,6 +73,16 @@ const MenuBar = () => {
       ref: menuRef,
       handler: handleCloseMenu,
     });
+
+    const handleDelete = () => {
+      // Perform the delete operation here
+      console.log('Item deleted');
+    };
+
+    const handleEdit = () => {
+      // Perform the edit operation here
+      console.log('Item edited');
+    };
   
     
       return (
@@ -80,19 +94,21 @@ const MenuBar = () => {
             onClick={handleMenuToggle}
           />
           <Collapse in={isMenuOpen} animateOpacity>
-            <Box borderWidth={1} borderRadius={10}
+            <Box borderWidth={1} borderRadius={10} w="auto"
               bg="#353340"
               p={4}
               position="absolute"
               top="auto"  // Set top to "auto" to let the box position itself naturally below the icon
               bottom="auto"  // Position the box at the bottom
+
               right={0}
               zIndex={10}
             >
               {/* Menu content goes here */}
-              <p>Edit</p>
+              <p  onClick={handleEdit}>Edit <FaEdit /></p>
                         <Divider borderColor={"#808191"} width={50}/>
-              <p>Delete</p>
+              <p onClick={handleDelete}>Delete <FaTrash /></p>
+
               
             </Box>
           </Collapse>
@@ -134,7 +150,7 @@ const MenuBar = () => {
             
             </HStack>
 
-            <Box w="1200" h="50px" mt="10px">
+            <Box id="0" w="1200" h="50px" mt="10px">
                 <HStack w="1200">
                     <Box bg="#808191" w="270px" h="50px" borderWidth={2} align="center">
                     <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Question Name</Text>
@@ -157,7 +173,7 @@ const MenuBar = () => {
                 </HStack>
             </Box>
 
-            <Box w="1200" h="50px" mt="3px">
+            <Box id="1" w="1200" h="50px" mt="3px">
                 <HStack w="1200">
                     <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
                     <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Test Mirror</Text>
@@ -179,7 +195,7 @@ const MenuBar = () => {
                     </Box>
                 </HStack>
             </Box>
-            <Box w="1200" h="50px" mt="3px">
+            <Box id="2" w="1200" h="50px" mt="3px">
                 <HStack w="1200">
                     <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
                     <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Reverse Age</Text>
@@ -201,7 +217,7 @@ const MenuBar = () => {
                     </Box>
                 </HStack>
             </Box>
-            <Box w="1200" h="50px" mt="3px">
+            <Box id="3" w="1200" h="50px" mt="3px">
                 <HStack w="1200">
                     <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
                     <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Roll A Dice</Text>
@@ -223,7 +239,7 @@ const MenuBar = () => {
                     </Box>
                 </HStack>
             </Box>
-            <Box w="1200" h="50px" mt="3px">
+            <Box id="4" w="1200" h="50px" mt="3px">
                 <HStack w="1200">
                     <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
                     <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Block Mahal</Text>
@@ -245,7 +261,7 @@ const MenuBar = () => {
                     </Box>
                 </HStack>
             </Box>
-            <Box w="1200" h="50px" mt="3px">
+            <Box id="5" w="1200" h="50px" mt="3px">
                 <HStack w="1200">
                     <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
                     <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Prime Addition</Text>
@@ -267,7 +283,7 @@ const MenuBar = () => {
                     </Box>
                 </HStack>
             </Box>
-            <Box w="1200" h="50px" mt="3px">
+            <Box id="6" w="1200" h="50px" mt="3px">
                 <HStack w="1200">
                     <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
                     <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Multiple Addition</Text>
@@ -289,7 +305,7 @@ const MenuBar = () => {
                     </Box>
                 </HStack>
             </Box>
-            <Box w="1200" h="50px" mt="3px">
+            <Box id="7" w="1200" h="50px" mt="3px">
                 <HStack w="1200">
                     <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
                     <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Frequency Calculator</Text>
@@ -311,7 +327,7 @@ const MenuBar = () => {
                     </Box>
                 </HStack>
             </Box>
-            <Box w="1200" h="50px" mt="3px">
+            <Box id="8" w="1200" h="50px" mt="3px">
                 <HStack w="1200">
                     <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
                     <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Block Wall</Text>
@@ -333,7 +349,7 @@ const MenuBar = () => {
                     </Box>
                 </HStack>
             </Box>
-            <Box w="1200" h="50px" mt="3px">
+            <Box id="9" w="1200" h="50px" mt="3px">
                 <HStack w="1200">
                     <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
                     <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">Average Age</Text>
@@ -355,7 +371,7 @@ const MenuBar = () => {
                     </Box>
                 </HStack>
             </Box>
-            <Box w="1200" h="50px" mt="3px">
+            <Box id="10" w="1200" h="50px" mt="3px">
                 <HStack w="1200">
                     <Box bg="#353340" w="270px" h="50px" borderWidth={2} align="center">
                     <Text fontWeight={"semibold"} fontSize={18} mt="10px" w="270px">U Turn</Text>
