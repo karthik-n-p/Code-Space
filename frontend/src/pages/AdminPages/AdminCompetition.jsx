@@ -67,9 +67,20 @@ const MenuBar2 = ({competitionId}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = React.useRef();
 
+  
+
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const handleCloseMenu = () => {
+    setIsMenuOpen(false);
+  };
+  
+  useOutsideClick({
+    ref: menuRef,
+    handler: handleCloseMenu,
+  });
 
   
   const navigate = useNavigate();
